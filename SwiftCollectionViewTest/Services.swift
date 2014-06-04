@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum HTTPMethod: Int
 {
@@ -26,5 +27,7 @@ enum HTTPMethod: Int
 protocol StackOverflowServices
 {
 	var baseURL		: String {set get}
+	class func sharedInstance() -> AnyObject
 	func fetchSearchResults(query: String, page: Int, completionHandler handler: ((NSURLResponse!, NSDictionary!, NSError!) -> Void)!)
+	func fetchImage(imageURL: String, completionHandler handler: ((NSURLResponse!, UIImage!, NSError!) -> Void)!)
 }

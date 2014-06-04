@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DE33C859193FC8BE00A9AB4A /* ImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE33C858193FC8BE00A9AB4A /* ImageViewExtensions.swift */; };
 		DEEF947D193E7D5500EB5D59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF947C193E7D5500EB5D59 /* AppDelegate.swift */; };
 		DEEF9484193E7D5500EB5D59 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DEEF9483193E7D5500EB5D59 /* Images.xcassets */; };
 		DEEF9490193E7D5600EB5D59 /* SwiftCollectionViewTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF948F193E7D5600EB5D59 /* SwiftCollectionViewTestTests.swift */; };
@@ -32,6 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DE33C858193FC8BE00A9AB4A /* ImageViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewExtensions.swift; sourceTree = "<group>"; };
 		DEEF9477193E7D5500EB5D59 /* SwiftCollectionViewTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftCollectionViewTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEEF947B193E7D5500EB5D59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DEEF947C193E7D5500EB5D59 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				DEEF94B0193F91C500EB5D59 /* DictionaryExtensions.swift */,
+				DE33C858193FC8BE00A9AB4A /* ImageViewExtensions.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 			files = (
 				DEEF94A0193E7DBE00EB5D59 /* ViewController.swift in Sources */,
 				DEEF94A2193E7DFE00EB5D59 /* Question.swift in Sources */,
+				DE33C859193FC8BE00A9AB4A /* ImageViewExtensions.swift in Sources */,
 				DEEF949F193E7DBE00EB5D59 /* MockJSONReader.swift in Sources */,
 				DEEF94B1193F91C500EB5D59 /* DictionaryExtensions.swift in Sources */,
 				DEEF94AE193F8A2400EB5D59 /* Services.swift in Sources */,
@@ -462,6 +466,7 @@
 				DEEF9495193E7D5600EB5D59 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DEEF9496193E7D5600EB5D59 /* Build configuration list for PBXNativeTarget "SwiftCollectionViewTestTests" */ = {
 			isa = XCConfigurationList;
@@ -470,6 +475,7 @@
 				DEEF9498193E7D5600EB5D59 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

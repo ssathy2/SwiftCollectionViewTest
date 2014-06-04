@@ -110,17 +110,17 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="S29-nh-iVl" firstAttribute="top" secondItem="pU6-dh-oGh" secondAttribute="bottom" id="41b-xk-gL3"/>
-                            <constraint firstItem="pU6-dh-oGh" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="14" id="Fti-Jv-Ujt"/>
-                            <constraint firstAttribute="trailing" secondItem="pU6-dh-oGh" secondAttribute="trailing" id="WCY-a2-Pfd"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="S29-nh-iVl" secondAttribute="bottom" id="d5k-rN-BZZ"/>
-                            <constraint firstItem="pU6-dh-oGh" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="dZ8-1a-cZQ"/>
-                            <constraint firstItem="S29-nh-iVl" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="gBV-YE-EZh"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="S29-nh-iVl" secondAttribute="bottom" id="kQ5-Hs-QuS"/>
-                            <constraint firstAttribute="trailing" secondItem="S29-nh-iVl" secondAttribute="trailing" id="zDD-di-aLL"/>
+                            <constraint firstItem="pU6-dh-oGh" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="14" id="Dg2-hG-6o6"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="S29-nh-iVl" secondAttribute="bottom" id="JC1-7X-Isn"/>
+                            <constraint firstItem="pU6-dh-oGh" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="NHB-9E-Qy6"/>
+                            <constraint firstAttribute="trailing" secondItem="pU6-dh-oGh" secondAttribute="trailing" id="OX9-go-D9F"/>
+                            <constraint firstAttribute="trailing" secondItem="S29-nh-iVl" secondAttribute="trailing" id="TNI-mH-VmX"/>
+                            <constraint firstItem="S29-nh-iVl" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="fgS-B6-liR"/>
+                            <constraint firstItem="S29-nh-iVl" firstAttribute="top" secondItem="pU6-dh-oGh" secondAttribute="bottom" id="pqS-IB-cWp"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
+                    <size key="freeformSize" width="480" height="480"/>
                     <connections>
                         <outlet property="collectionView" destination="S29-nh-iVl" id="lZh-nE-GqY"/>
                         <outlet property="searchBar" destination="pU6-dh-oGh" id="Rhl-rE-yQo"/>

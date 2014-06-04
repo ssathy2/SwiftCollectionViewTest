@@ -23,6 +23,10 @@ class PostCell : UICollectionViewCell
 		if question.user
 		{
 			self.questionAuthor.text	= question.user!.display_name
+			if question.user!.profile_image
+			{
+				self.postProfileImage.setImageWithURL(question.user!.profile_image)
+			}
 		}
 		self.questionDescription.text	= question.body;
 		self.questionTitle.text			= question.title;
@@ -34,12 +38,17 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 	@IBOutlet var searchBar : UISearchBar
 	@IBOutlet var collectionView : UICollectionView
 	var questions : Array<Question> = []
-	var liveServices : StackOverflowLiveServices = StackOverflowLiveServices()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
+		var tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("viewTapped"))
+		self.view.addGestureRecognizer(tapGestureRecognizer)
+	}
 	
+	func viewTapped()
+	{
+		self.view.endEditing(true)
 	}
 	
 	func setupQuestionsArrayWithModels(models : Array<NSDictionary>)
@@ -75,7 +84,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 	{
 		if countElements(searchText!) > 0
 		{
-			self.liveServices.fetchSearchResults(searchText!, page: 1, completionHandler: {
+			var services : StackOverflowLiveServices = StackOverflowLiveServices.sharedInstance() as StackOverflowLiveServices;
+			services.fetchSearchResults(searchText!, page: 1, completionHandler: {
 				(urlResponse: NSURLResponse!, dictionary: NSDictionary!, error: NSError!) -> Void in
 					var items : Array<NSDictionary>? = dictionary.valueForKey("items") as? Array<NSDictionary>
 					if items
