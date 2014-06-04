@@ -103,6 +103,9 @@
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="pU6-dh-oGh">
                                 <rect key="frame" x="0.0" y="34" width="480" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="6De-SL-Xok"/>
+                                </connections>
                             </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -120,6 +123,7 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="S29-nh-iVl" id="lZh-nE-GqY"/>
+                        <outlet property="searchBar" destination="pU6-dh-oGh" id="Rhl-rE-yQo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

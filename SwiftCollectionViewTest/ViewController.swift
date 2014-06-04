@@ -29,27 +29,17 @@ class PostCell : UICollectionViewCell
 	}
 }
 
-class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate
+class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate
 {
+	@IBOutlet var searchBar : UISearchBar
 	@IBOutlet var collectionView : UICollectionView
 	var questions : Array<Question> = []
+	var liveServices : StackOverflowLiveServices = StackOverflowLiveServices()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
-		var fileName = "mock_search"
-		
-		// Mock_data contains a dictionary (or nil) that contains the KV pairs of the json file
-		var mock_data : NSDictionary? = MockJSONReader.dictionaryFromJSON(fileName) as NSDictionary?
-		if mock_data
-		{
-			var items : Array<NSDictionary>? = mock_data!.valueForKey("items") as? Array<NSDictionary>
-			if items
-			{
-				self.setupQuestionsArrayWithModels(items!)
-				self.collectionView.reloadData()
-			}
-		}
+	
 	}
 	
 	func setupQuestionsArrayWithModels(models : Array<NSDictionary>)
@@ -79,5 +69,24 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 		cell.updateWithModel(q)
 		return cell
 	}
+	
+	// UISearchBarDelegate
+	func searchBar(searchBar: UISearchBar!, textDidChange searchText: String!) // called when text changes (including clear)
+	{
+		if countElements(searchText!) > 0
+		{
+			self.liveServices.fetchSearchResults(searchText!, page: 1, completionHandler: {
+				(urlResponse: NSURLResponse!, dictionary: NSDictionary!, error: NSError!) -> Void in
+					var items : Array<NSDictionary>? = dictionary.valueForKey("items") as? Array<NSDictionary>
+					if items
+					{
+						self.setupQuestionsArrayWithModels(items!)
+						self.collectionView.reloadData()
+					}
+				})
+		}
+	}
+
+	
 }
 

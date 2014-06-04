@@ -16,6 +16,9 @@
 		DEEF94A0193E7DBE00EB5D59 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF949D193E7DBE00EB5D59 /* ViewController.swift */; };
 		DEEF94A2193E7DFE00EB5D59 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF94A1193E7DFE00EB5D59 /* Question.swift */; };
 		DEEF94A4193F7A6F00EB5D59 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF94A3193F7A6F00EB5D59 /* User.swift */; };
+		DEEF94AC193F89DA00EB5D59 /* LiveDataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF94AB193F89DA00EB5D59 /* LiveDataServices.swift */; };
+		DEEF94AE193F8A2400EB5D59 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF94AD193F8A2400EB5D59 /* Services.swift */; };
+		DEEF94B1193F91C500EB5D59 /* DictionaryExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF94B0193F91C500EB5D59 /* DictionaryExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +45,9 @@
 		DEEF949D193E7DBE00EB5D59 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		DEEF94A1193E7DFE00EB5D59 /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		DEEF94A3193F7A6F00EB5D59 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		DEEF94AB193F89DA00EB5D59 /* LiveDataServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveDataServices.swift; sourceTree = "<group>"; };
+		DEEF94AD193F8A2400EB5D59 /* Services.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
+		DEEF94B0193F91C500EB5D59 /* DictionaryExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +89,7 @@
 		DEEF9479193E7D5500EB5D59 /* SwiftCollectionViewTest */ = {
 			isa = PBXGroup;
 			children = (
+				DEEF94AF193F91B200EB5D59 /* Extensions */,
 				DEEF94A8193F88F200EB5D59 /* Services */,
 				DEEF94A6193F88D500EB5D59 /* Views */,
 				DEEF94A5193F88CA00EB5D59 /* Models */,
@@ -140,6 +147,7 @@
 		DEEF94A8193F88F200EB5D59 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				DEEF94AD193F8A2400EB5D59 /* Services.swift */,
 				DEEF94AA193F88FE00EB5D59 /* Live */,
 				DEEF94A9193F88F900EB5D59 /* Mock */,
 			);
@@ -157,8 +165,17 @@
 		DEEF94AA193F88FE00EB5D59 /* Live */ = {
 			isa = PBXGroup;
 			children = (
+				DEEF94AB193F89DA00EB5D59 /* LiveDataServices.swift */,
 			);
 			name = Live;
+			sourceTree = "<group>";
+		};
+		DEEF94AF193F91B200EB5D59 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				DEEF94B0193F91C500EB5D59 /* DictionaryExtensions.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,8 +281,11 @@
 				DEEF94A0193E7DBE00EB5D59 /* ViewController.swift in Sources */,
 				DEEF94A2193E7DFE00EB5D59 /* Question.swift in Sources */,
 				DEEF949F193E7DBE00EB5D59 /* MockJSONReader.swift in Sources */,
+				DEEF94B1193F91C500EB5D59 /* DictionaryExtensions.swift in Sources */,
+				DEEF94AE193F8A2400EB5D59 /* Services.swift in Sources */,
 				DEEF94A4193F7A6F00EB5D59 /* User.swift in Sources */,
 				DEEF947D193E7D5500EB5D59 /* AppDelegate.swift in Sources */,
+				DEEF94AC193F89DA00EB5D59 /* LiveDataServices.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
