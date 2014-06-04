@@ -15,6 +15,7 @@
 		DEEF949F193E7DBE00EB5D59 /* MockJSONReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF949C193E7DBE00EB5D59 /* MockJSONReader.swift */; };
 		DEEF94A0193E7DBE00EB5D59 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF949D193E7DBE00EB5D59 /* ViewController.swift */; };
 		DEEF94A2193E7DFE00EB5D59 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF94A1193E7DFE00EB5D59 /* Question.swift */; };
+		DEEF94A4193F7A6F00EB5D59 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF94A3193F7A6F00EB5D59 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		DEEF949C193E7DBE00EB5D59 /* MockJSONReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockJSONReader.swift; sourceTree = "<group>"; };
 		DEEF949D193E7DBE00EB5D59 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		DEEF94A1193E7DFE00EB5D59 /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
+		DEEF94A3193F7A6F00EB5D59 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,11 +83,11 @@
 		DEEF9479193E7D5500EB5D59 /* SwiftCollectionViewTest */ = {
 			isa = PBXGroup;
 			children = (
-				DEEF949C193E7DBE00EB5D59 /* MockJSONReader.swift */,
-				DEEF949D193E7DBE00EB5D59 /* ViewController.swift */,
+				DEEF94A8193F88F200EB5D59 /* Services */,
+				DEEF94A6193F88D500EB5D59 /* Views */,
+				DEEF94A5193F88CA00EB5D59 /* Models */,
 				DEEF9499193E7D8B00EB5D59 /* Main.storyboard */,
 				DEEF947C193E7D5500EB5D59 /* AppDelegate.swift */,
-				DEEF94A1193E7DFE00EB5D59 /* Question.swift */,
 				DEEF9483193E7D5500EB5D59 /* Images.xcassets */,
 				DEEF947A193E7D5500EB5D59 /* Supporting Files */,
 			);
@@ -116,6 +118,47 @@
 				DEEF948E193E7D5600EB5D59 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DEEF94A5193F88CA00EB5D59 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DEEF94A1193E7DFE00EB5D59 /* Question.swift */,
+				DEEF94A3193F7A6F00EB5D59 /* User.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		DEEF94A6193F88D500EB5D59 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DEEF949D193E7DBE00EB5D59 /* ViewController.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		DEEF94A8193F88F200EB5D59 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				DEEF94AA193F88FE00EB5D59 /* Live */,
+				DEEF94A9193F88F900EB5D59 /* Mock */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		DEEF94A9193F88F900EB5D59 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				DEEF949C193E7DBE00EB5D59 /* MockJSONReader.swift */,
+			);
+			name = Mock;
+			sourceTree = "<group>";
+		};
+		DEEF94AA193F88FE00EB5D59 /* Live */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Live;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -221,6 +264,7 @@
 				DEEF94A0193E7DBE00EB5D59 /* ViewController.swift in Sources */,
 				DEEF94A2193E7DFE00EB5D59 /* Question.swift in Sources */,
 				DEEF949F193E7DBE00EB5D59 /* MockJSONReader.swift in Sources */,
+				DEEF94A4193F7A6F00EB5D59 /* User.swift in Sources */,
 				DEEF947D193E7D5500EB5D59 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

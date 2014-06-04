@@ -20,7 +20,10 @@ class PostCell : UICollectionViewCell
 	
 	func updateWithModel(question : Question)
 	{
-		self.questionAuthor.text		= "REPLACE ME"//question.owner.display_name;
+		if question.user
+		{
+			self.questionAuthor.text	= question.user!.display_name
+		}
 		self.questionDescription.text	= question.body;
 		self.questionTitle.text			= question.title;
 	}
