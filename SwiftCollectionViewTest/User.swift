@@ -18,7 +18,7 @@ import Foundation
 //	"link": "http://stackoverflow.com/users/926903/aradhya"
 //},
 
-class User
+struct User
 {
 	var reputation		: NSNumber?
 	var user_id			: NSString?
@@ -28,36 +28,23 @@ class User
 	var display_name	: NSString?
 	var link			: NSURL?
 	
-	init(reputation: NSNumber?, user_id: NSString?, user_type: NSString?, accept_rate: NSNumber?, profile_image: NSURL?, display_name: NSString?, link: NSURL?)
+	init(dictionary: NSDictionary)
 	{
-		self.reputation		= reputation
-		self.user_id		= user_id
-		self.user_type		= user_type
-		self.accept_rate	= accept_rate
-		self.profile_image	= profile_image
-		self.display_name	= display_name
-		self.link			= link
-	}
-	
-	convenience init(dictionary: NSDictionary)
-	{
-		var reputation	= dictionary.valueForKey("reputation") as? NSNumber
-		var user_id		= dictionary.valueForKey("user_id") as? NSString
-		var user_type	= dictionary.valueForKey("user_type") as? NSString
-		var accept_rate = dictionary.valueForKey("accept_rate") as? NSNumber
-		var profile_image = NSURL(string: dictionary.valueForKey("profile_image") as? String) as NSURL?
-		var display_name = dictionary.valueForKey("display_name") as? NSString
-		var link = NSURL(string: dictionary.valueForKey("link") as? String) as NSURL?
+		self.reputation	= dictionary.valueForKey("reputation") as? NSNumber
+		self.user_id		= dictionary.valueForKey("user_id") as? NSString
+		self.user_type	= dictionary.valueForKey("user_type") as? NSString
+		self.accept_rate = dictionary.valueForKey("accept_rate") as? NSNumber
+		self.display_name = dictionary.valueForKey("display_name") as? NSString
 		
-		self.init(
-			reputation: reputation,
-			user_id: user_id,
-			user_type: user_type,
-			accept_rate: accept_rate,
-			profile_image: profile_image,
-			display_name: display_name,
-			link: link
-		)
+		if dictionary.valueForKey("profile_image")
+		{
+			self.profile_image = NSURL(string: dictionary.valueForKey("profile_image") as? String) as? NSURL
+		}
+		
+		if dictionary.valueForKey("link")
+		{
+			self.link = NSURL(string: dictionary.valueForKey("link") as? String) as? NSURL
+		}
 	}
 	
 }

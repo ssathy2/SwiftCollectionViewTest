@@ -12,9 +12,11 @@ let DDDCollectionViewCellIdentifier = "DDDCollectionViewCellID"
 
 class PostCell : UICollectionViewCell
 {
+	@IBOutlet var profileImageContainer : UIView
 	@IBOutlet var postProfileImage		: UIImageView
-	@IBOutlet var containerView			: UIView
 	@IBOutlet var questionAuthor		: UILabel
+	
+	@IBOutlet var postInformationContainer : UIView
 	@IBOutlet var questionDescription	: UILabel
 	@IBOutlet var questionTitle			: UILabel
 	

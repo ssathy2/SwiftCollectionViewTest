@@ -16,8 +16,8 @@ class IDURLRequest: NSMutableURLRequest
 
 class StackOverflowLiveServices: StackOverflowServices
 {
-	var jsonRequestToHandlerMap = Dictionary<NSUUID, ((NSURLResponse!, NSDictionary!, NSError!) -> Void)?>()
-	var imageRequestToHandlerMap = Dictionary<NSUUID, ((NSURLResponse!, UIImage!, NSError!) -> Void)?>()
+	var jsonRequestToHandlerMap = Dictionary<NSUUID, ((NSURLResponse!, NSDictionary!, NSError!) -> Void)>()
+	var imageRequestToHandlerMap = Dictionary<NSUUID, ((NSURLResponse!, UIImage!, NSError!) -> Void)>()
 	var urlToImageMapping = Dictionary<String, UIImage?>()
 	
 	var baseURL : String = "http://api.stackexchange.com/2.2/"
@@ -55,7 +55,7 @@ class StackOverflowLiveServices: StackOverflowServices
 					var convertedDictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? NSDictionary
 					if convertedDictionary
 					{
-						handler!!(response, convertedDictionary!, error)
+						handler!(response, convertedDictionary!, error)
 						self.jsonRequestToHandlerMap.removeValueForKey(request.identifier)
 					}
 				}
@@ -85,7 +85,7 @@ class StackOverflowLiveServices: StackOverflowServices
 					if convertedImage
 					{
 						self.urlToImageMapping.updateValue(convertedImage!, forKey: imageURL)
-						handler!!(response, convertedImage, error)
+						handler!(response, convertedImage, error)
 						self.imageRequestToHandlerMap.removeValueForKey(request.identifier)
 					}
 				}
