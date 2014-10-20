@@ -20,7 +20,7 @@ class MockJSONReader
 			// TODO: Figure out how to return an empty dictionary
 			return nil
 		}
-		var filePath : String = bundle.pathForResource(fileName, ofType: "json")
+		var filePath : String = bundle.pathForResource(fileName, ofType: "json")!
 		if countElements(filePath) == 0
 		{
 			println("ERROR: Invalid JSON File Name")

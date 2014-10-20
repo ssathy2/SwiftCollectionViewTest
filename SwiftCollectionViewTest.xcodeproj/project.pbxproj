@@ -20,6 +20,7 @@
 		DEEF94AC193F89DA00EB5D59 /* LiveDataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF94AB193F89DA00EB5D59 /* LiveDataServices.swift */; };
 		DEEF94AE193F8A2400EB5D59 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF94AD193F8A2400EB5D59 /* Services.swift */; };
 		DEEF94B1193F91C500EB5D59 /* DictionaryExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF94B0193F91C500EB5D59 /* DictionaryExtensions.swift */; };
+		F983A2E219F5B6C200A2C710 /* ServicesClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F983A2E119F5B6C200A2C710 /* ServicesClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		DEEF94AB193F89DA00EB5D59 /* LiveDataServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveDataServices.swift; sourceTree = "<group>"; };
 		DEEF94AD193F8A2400EB5D59 /* Services.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		DEEF94B0193F91C500EB5D59 /* DictionaryExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtensions.swift; sourceTree = "<group>"; };
+		F983A2E119F5B6C200A2C710 /* ServicesClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				DEEF94AD193F8A2400EB5D59 /* Services.swift */,
+				F983A2E119F5B6C200A2C710 /* ServicesClient.swift */,
 				DEEF94AA193F88FE00EB5D59 /* Live */,
 				DEEF94A9193F88F900EB5D59 /* Mock */,
 			);
@@ -285,6 +288,7 @@
 				DEEF94A2193E7DFE00EB5D59 /* Question.swift in Sources */,
 				DE33C859193FC8BE00A9AB4A /* ImageViewExtensions.swift in Sources */,
 				DEEF949F193E7DBE00EB5D59 /* MockJSONReader.swift in Sources */,
+				F983A2E219F5B6C200A2C710 /* ServicesClient.swift in Sources */,
 				DEEF94B1193F91C500EB5D59 /* DictionaryExtensions.swift in Sources */,
 				DEEF94AE193F8A2400EB5D59 /* Services.swift in Sources */,
 				DEEF94A4193F7A6F00EB5D59 /* User.swift in Sources */,

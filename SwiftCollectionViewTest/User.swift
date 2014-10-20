@@ -36,14 +36,14 @@ struct User
 		self.accept_rate = dictionary.valueForKey("accept_rate") as? NSNumber
 		self.display_name = dictionary.valueForKey("display_name") as? NSString
 		
-		if dictionary.valueForKey("profile_image")
+		if (dictionary.valueForKey("profile_image") != nil)
 		{
-			self.profile_image = NSURL(string: dictionary.valueForKey("profile_image") as? String) as? NSURL
+			self.profile_image = NSURL(string: dictionary.valueForKey("profile_image") as String!)
 		}
 		
-		if dictionary.valueForKey("link")
+		if (dictionary.valueForKey("link") != nil)
 		{
-			self.link = NSURL(string: dictionary.valueForKey("link") as? String) as? NSURL
+			self.link = NSURL(string: dictionary.valueForKey("link") as String!)
 		}
 	}
 	

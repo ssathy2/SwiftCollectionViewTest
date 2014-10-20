@@ -15,7 +15,7 @@ extension UIImageView
 	{
 		var services : StackOverflowLiveServices = StackOverflowLiveServices.sharedInstance() as StackOverflowLiveServices;
 		var imageURLString = url.absoluteString;
-		services.fetchImage(imageURLString, completionHandler: {
+		services.fetchImage(imageURLString!, completionHandler: {
 			(urlResponse: NSURLResponse!, image: UIImage!, error: NSError!) -> Void in
 				// TODO: Probably need to run this on the main thread
 				self.image = image;

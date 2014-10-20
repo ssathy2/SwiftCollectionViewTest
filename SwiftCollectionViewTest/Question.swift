@@ -21,9 +21,9 @@ struct Question
 		
 		var userDictionary	=	dictionary.valueForKey("owner") as? NSDictionary
 		var user : User?
-		if userDictionary
+		if userDictionary != nil
 		{
-			self.user = User(dictionary: userDictionary!) as? User
+			self.user = User(dictionary: userDictionary!)
 		}
 	}
-} 
+}

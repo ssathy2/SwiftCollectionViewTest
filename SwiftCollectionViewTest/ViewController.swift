@@ -12,33 +12,33 @@ let DDDCollectionViewCellIdentifier = "DDDCollectionViewCellID"
 
 class PostCell : UICollectionViewCell
 {
-	@IBOutlet var profileImageContainer : UIView
-	@IBOutlet var postProfileImage		: UIImageView
-	@IBOutlet var questionAuthor		: UILabel
+	@IBOutlet var profileImageContainer : UIView?
+	@IBOutlet var postProfileImage		: UIImageView?
+	@IBOutlet var questionAuthor		: UILabel?
 	
-	@IBOutlet var postInformationContainer : UIView
-	@IBOutlet var questionDescription	: UILabel
-	@IBOutlet var questionTitle			: UILabel
+	@IBOutlet var postInformationContainer : UIView?
+	@IBOutlet var questionDescription	: UITextView?
+	@IBOutlet var questionTitle			: UILabel?
 	
 	func updateWithModel(question : Question)
 	{
-		if question.user
+		if question.user != nil
 		{
-			self.questionAuthor.text	= question.user!.display_name
-			if question.user!.profile_image
+			self.questionAuthor!.text	= question.user!.display_name
+			if question.user!.profile_image != nil
 			{
-				self.postProfileImage.setImageWithURL(question.user!.profile_image)
+				self.postProfileImage!.setImageWithURL(question.user!.profile_image)
 			}
 		}
-		self.questionDescription.text	= question.body;
-		self.questionTitle.text			= question.title;
+		self.questionDescription!.text      = question.body;
+		self.questionTitle!.text			= question.title;
 	}
 }
 
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate
 {
-	@IBOutlet var searchBar : UISearchBar
-	@IBOutlet var collectionView : UICollectionView
+	@IBOutlet var searchBar : UISearchBar?
+	@IBOutlet var collectionView : UICollectionView?
 	var questions : Array<Question> = []
 	
 	override func viewDidLoad() {
@@ -68,12 +68,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 	}
 
 	// UICollectionViewDataSource
-	func collectionView(collectionView: UICollectionView!, numberOfItemsInSection section: Int) -> Int
-	{
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+    {
 		return self.questions.count
 	}
 	
-	func collectionView(collectionView: UICollectionView!, cellForItemAtIndexPath indexPath: NSIndexPath!) -> UICollectionViewCell!
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
 	{
 		var q : Question = self.questions[indexPath.row]
 		var cell : PostCell = collectionView.dequeueReusableCellWithReuseIdentifier(DDDCollectionViewCellIdentifier, forIndexPath: indexPath) as PostCell
@@ -89,11 +89,11 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 			var services : StackOverflowLiveServices = StackOverflowLiveServices.sharedInstance() as StackOverflowLiveServices;
 			services.fetchSearchResults(searchText!, page: 1, completionHandler: {
 				(urlResponse: NSURLResponse!, dictionary: NSDictionary!, error: NSError!) -> Void in
-					var items : Array<NSDictionary>? = dictionary.valueForKey("items") as? Array<NSDictionary>
-					if items
+					var items : [NSDictionary]? = dictionary.valueForKey("items") as? [NSDictionary]
+					if items != nil
 					{
 						self.setupQuestionsArrayWithModels(items!)
-						self.collectionView.reloadData()
+						self.collectionView!.reloadData()
 					}
 				})
 		}
