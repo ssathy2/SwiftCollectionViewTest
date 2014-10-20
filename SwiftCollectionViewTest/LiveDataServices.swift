@@ -51,10 +51,8 @@ class StackOverflowLiveServices: StackOverflowServices
 	var jsonRequestToHandlerMap = Dictionary<NSUUID, IDURLResponseHandler>()
 	var imageRequestToHandlerMap = Dictionary<NSUUID, IDURLImageResponseHandler>()
 	var urlToImageMapping = Dictionary<String, UIImage?>()
-	
-	var baseURL : String = "http://api.stackexchange.com/2.2/"
-	var defaultParameters = ["site" : "stackoverflow"]
-	
+    
+    var servicesClient : ServicesClient = ServicesClient(baseURL: "http://api.stackexchange.com/2.2/", defaultParameters: ["site" : "stackoverflow"])
 	class func sharedInstance() -> AnyObject
 	{
 		struct Static {
@@ -68,19 +66,7 @@ class StackOverflowLiveServices: StackOverflowServices
 		return Static.sharedManager!
 	}
     
-    func fetchData(request: IDURLRequest!, handler: IDURLResponseHandler)
-    {
-        if self.jsonRequestToHandlerMap[request.identifier] != nil
-        {
-            return;
-        }
-        else
-        {
-            self.jsonRequestToHandlerMap[request.identifier] = handler
-        }
-        request.appendURLParams(self.defaultParameters)
-        
-    }
+    
 	
 	func fetchSearchResults(query: String, page: Int, completionHandler handler: IDURLResponseHandler)
 	{

@@ -29,7 +29,6 @@ typealias IDURLImageResponseHandler = ((NSURLResponse!, UIImage!, NSError!) -> V
 
 protocol StackOverflowServices
 {
-	var baseURL		: String {set get}
 	class func sharedInstance() -> AnyObject
 	func fetchSearchResults(query: String, page: Int, completionHandler handler: IDURLResponseHandler)
 	func fetchImage(imageURL: String, completionHandler handler: IDURLImageResponseHandler)
