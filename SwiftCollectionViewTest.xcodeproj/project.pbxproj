@@ -14,7 +14,6 @@
 		DEEF949A193E7D8B00EB5D59 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEEF9499193E7D8B00EB5D59 /* Main.storyboard */; };
 		DEEF949E193E7DBE00EB5D59 /* mock_search.json in Resources */ = {isa = PBXBuildFile; fileRef = DEEF949B193E7DBE00EB5D59 /* mock_search.json */; };
 		DEEF949F193E7DBE00EB5D59 /* MockJSONReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF949C193E7DBE00EB5D59 /* MockJSONReader.swift */; };
-		DEEF94A0193E7DBE00EB5D59 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF949D193E7DBE00EB5D59 /* ViewController.swift */; };
 		DEEF94A2193E7DFE00EB5D59 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF94A1193E7DFE00EB5D59 /* Question.swift */; };
 		DEEF94A4193F7A6F00EB5D59 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF94A3193F7A6F00EB5D59 /* User.swift */; };
 		DEEF94AC193F89DA00EB5D59 /* LiveDataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF94AB193F89DA00EB5D59 /* LiveDataServices.swift */; };
@@ -45,7 +44,6 @@
 		DEEF9499193E7D8B00EB5D59 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		DEEF949B193E7DBE00EB5D59 /* mock_search.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = mock_search.json; sourceTree = "<group>"; };
 		DEEF949C193E7DBE00EB5D59 /* MockJSONReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockJSONReader.swift; sourceTree = "<group>"; };
-		DEEF949D193E7DBE00EB5D59 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		DEEF94A1193E7DFE00EB5D59 /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		DEEF94A3193F7A6F00EB5D59 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DEEF94AB193F89DA00EB5D59 /* LiveDataServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveDataServices.swift; sourceTree = "<group>"; };
@@ -143,7 +141,6 @@
 		DEEF94A6193F88D500EB5D59 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				DEEF949D193E7DBE00EB5D59 /* ViewController.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -284,7 +281,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DEEF94A0193E7DBE00EB5D59 /* ViewController.swift in Sources */,
 				DEEF94A2193E7DFE00EB5D59 /* Question.swift in Sources */,
 				DE33C859193FC8BE00A9AB4A /* ImageViewExtensions.swift in Sources */,
 				DEEF949F193E7DBE00EB5D59 /* MockJSONReader.swift in Sources */,

@@ -27,9 +27,11 @@ enum HTTPMethod: Int
 typealias IDURLResponseHandler = ((NSURLResponse!, NSDictionary!, NSError!) -> Void)!;
 typealias IDURLImageResponseHandler = ((NSURLResponse!, UIImage!, NSError!) -> Void)!;
 
+typealias IDQuestionsHandler = ((NSURLResponse!, [Question]?, NSError!) -> Void)!;
+
 protocol StackOverflowServices
 {
 	class func sharedInstance() -> AnyObject
-	func fetchSearchResults(query: String, page: Int, completionHandler handler: IDURLResponseHandler)
+	func fetchSearchResults(query: String, page: Int, completionHandler handler: IDQuestionsHandler)
 	func fetchImage(imageURL: String, completionHandler handler: IDURLImageResponseHandler)
 }

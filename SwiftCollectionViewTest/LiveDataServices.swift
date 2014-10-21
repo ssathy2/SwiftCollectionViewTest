@@ -48,10 +48,7 @@ class IDURLRequest: NSMutableURLRequest
 
 class StackOverflowLiveServices: StackOverflowServices
 {
-	var jsonRequestToHandlerMap = Dictionary<NSUUID, IDURLResponseHandler>()
-	var imageRequestToHandlerMap = Dictionary<NSUUID, IDURLImageResponseHandler>()
-	var urlToImageMapping = Dictionary<String, UIImage?>()
-    
+    var baseURL = "http://api.stackexchange.com/2.2/"
     var servicesClient : ServicesClient = ServicesClient(baseURL: "http://api.stackexchange.com/2.2/", defaultParameters: ["site" : "stackoverflow"])
 	class func sharedInstance() -> AnyObject
 	{
@@ -66,58 +63,21 @@ class StackOverflowLiveServices: StackOverflowServices
 		return Static.sharedManager!
 	}
     
-    
-	
-	func fetchSearchResults(query: String, page: Int, completionHandler handler: IDURLResponseHandler)
+    func fetchSearchResults(query: String, page: Int, completionHandler handler: IDQuestionsHandler)
 	{
 		var url = "\(baseURL)search?"
 		var urlParams = ["intitle" : query, "page" : page.description]
-
         var request : IDURLRequest = IDURLRequest.createRequest(HTTPMethod.GET, stringURL: url, urlParams: urlParams, headers: nil)
 		
-		NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {
-			(response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
-				var handler = self.jsonRequestToHandlerMap[request.identifier]
-				if handler != nil
-				{
-					var convertedDictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? NSDictionary
-					if convertedDictionary != nil
-					{
-						handler!(response, convertedDictionary!, error)
-						self.jsonRequestToHandlerMap.removeValueForKey(request.identifier)
-					}
-				}
-			}
-		)
+        self.servicesClient.fetchJSON(request, handler: {
+            (response: NSURLResponse!, responseDict: NSDictionary!, error: NSError!) in
+            
+        });
 	}
 	
 	func fetchImage(imageURL: String, completionHandler handler: IDURLImageResponseHandler)
 	{
-		var image = self.urlToImageMapping[imageURL]
-		if image != nil
-		{
-			handler(nil, image!, nil)
-		}
-		
-		var request : IDURLRequest = IDURLRequest.createRequest(HTTPMethod.GET, stringURL: imageURL, urlParams: nil, headers: nil)
-		if self.imageRequestToHandlerMap[request.identifier] == nil
-		{
-			self.imageRequestToHandlerMap[request.identifier] = handler
-		}
-		NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {
-			(response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
-				var handler = self.imageRequestToHandlerMap[request.identifier]
-				if handler != nil
-				{
-					var convertedImage = UIImage(data: data) as UIImage?
-                    if (convertedImage != nil)
-					{
-						self.urlToImageMapping.updateValue(convertedImage, forKey: imageURL)
-						handler!(response, convertedImage, error)
-						self.imageRequestToHandlerMap.removeValueForKey(request.identifier)
-					}
-				}
-			})
+	
 	}
 	
 }
