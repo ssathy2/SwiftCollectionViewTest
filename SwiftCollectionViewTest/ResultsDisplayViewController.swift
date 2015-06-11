@@ -12,26 +12,24 @@ let DDDCollectionViewCellIdentifier = "DDDCollectionViewCellID"
 
 class PostCell : UICollectionViewCell
 {
-	@IBOutlet var profileImageContainer : UIView?
 	@IBOutlet var postProfileImage		: UIImageView?
 	@IBOutlet var questionAuthor		: UILabel?
+    @IBOutlet var questionTitle			: UILabel?
 	
-	@IBOutlet var postInformationContainer : UIView?
-	@IBOutlet var questionDescription	: UITextView?
-	@IBOutlet var questionTitle			: UILabel?
-	
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        postProfileImage!.image = nil
+    }
+    
 	func updateWithModel(question : Question)
 	{
-		if question.user != nil
-		{
-			self.questionAuthor!.text	= question.user!.display_name
-			if question.user!.profile_image != nil
-			{
-				self.postProfileImage!.setImageWithURL(question.user!.profile_image)
+		if let user = question.user {
+			self.questionAuthor!.text	= user.display_name! as String
+            if user.profile_image != nil {
+				self.postProfileImage!.setImageWithURL(user.profile_image)
 			}
 		}
-		self.questionDescription!.text      = question.body;
-		self.questionTitle!.text			= question.title;
+		self.questionTitle!.text			= question.title as? String;
 	}
 }
 
@@ -44,22 +42,16 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
-		var tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("viewTapped"))
+		let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("viewTapped"))
 		self.view.addGestureRecognizer(tapGestureRecognizer)
 	}
 	
-	func viewTapped()
-	{
+	func viewTapped() {
 		self.view.endEditing(true)
 	}
 	
-	func setupQuestionsArrayWithModels(models : Array<NSDictionary>)
-	{
-		for model in models
-		{
-			var m = Question(fromObjcDictionary: model)
-			self.questions.append(m)
-		}
+	func setupQuestionsArrayWithModels(models : Array<NSDictionary>) {
+        self.questions = models.map({dictionary in Question(fromObjcDictionary: dictionary )})
 	}
 
 	override func didReceiveMemoryWarning() {
@@ -75,26 +67,27 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 	
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
 	{
-		var q : Question = self.questions[indexPath.row]
-		var cell : PostCell = collectionView.dequeueReusableCellWithReuseIdentifier(DDDCollectionViewCellIdentifier, forIndexPath: indexPath) as PostCell
+		let q : Question = self.questions[indexPath.row]
+		let cell : PostCell = collectionView.dequeueReusableCellWithReuseIdentifier(DDDCollectionViewCellIdentifier, forIndexPath: indexPath) as! PostCell
 		cell.updateWithModel(q)
 		return cell
 	}
+    
+    // UICollectionViewDelegate
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        let viewBounds = collectionView.bounds.size
+        let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
+        return CGSizeMake(viewBounds.width, flowLayout.itemSize.height)
+    }
 	
 	// UISearchBarDelegate
-	func searchBar(searchBar: UISearchBar!, textDidChange searchText: String!) // called when text changes (including clear)
-	{
-		if countElements(searchText!) > 0
-		{
-			var services : StackOverflowLiveServices = StackOverflowLiveServices.sharedInstance() as StackOverflowLiveServices;
-			services.fetchSearchResults(searchText!, page: 1, completionHandler: {
-				(urlResponse: NSURLResponse!, dictionary: NSDictionary!, error: NSError!) -> Void in
-					var items : [NSDictionary]? = dictionary.valueForKey("items") as? [NSDictionary]
-					if items != nil
-					{
-						self.setupQuestionsArrayWithModels(items!)
-						self.collectionView!.reloadData()
-					}
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {  // called when text changes (including clear) 
+		if searchText.characters.count > 0 {
+			let services : StackOverflowLiveServices = StackOverflowLiveServices.sharedInstance() as! StackOverflowLiveServices;
+			services.fetchSearchResults(searchText, page: 1, completionHandler: {
+				(urlResponse: NSURLResponse!, questions: [Question]?, error: NSError!) -> Void in
+                    self.questions = questions!
+                    self.collectionView!.reloadData()
 				})
 		}
 	}

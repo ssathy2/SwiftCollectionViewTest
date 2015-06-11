@@ -19,11 +19,8 @@ struct Question
 		self.body			=	dictionary.valueForKey("body") as? NSString
 		self.title			=	dictionary.valueForKey("title") as? NSString
 		
-		var userDictionary	=	dictionary.valueForKey("owner") as? NSDictionary
-		var user : User?
-		if userDictionary != nil
-		{
-			self.user = User(dictionary: userDictionary!)
-		}
+        if let userDictionary = dictionary.valueForKey("owner") as? NSDictionary {
+			self.user = User(dictionary: userDictionary)
+        }
 	}
 }

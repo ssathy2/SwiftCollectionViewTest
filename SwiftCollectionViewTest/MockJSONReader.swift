@@ -8,27 +8,35 @@
 
 import Foundation
 
-class MockJSONReader
-{
-	class func dictionaryFromJSON(fileName : String) -> NSDictionary?
-	{
-		let bundle : NSBundle = NSBundle.mainBundle()
+enum MockJSONReaderError : ErrorType {
+    case FileNameError
+    case FilePathError
+    case FileDataError
+    case FileSerializationError
+}
 
-		if countElements(fileName) == 0
-		{
-			println("ERROR: No JSON file name provided")
-			// TODO: Figure out how to return an empty dictionary
-			return nil
-		}
-		var filePath : String = bundle.pathForResource(fileName, ofType: "json")!
-		if countElements(filePath) == 0
-		{
-			println("ERROR: Invalid JSON File Name")
-			// TODO: Figure out how to return an empty dictionary
-			return nil
-		}
+class MockJSONReader {
+	class func dictionaryFromJSON(fileName : String) throws -> NSDictionary? {
+		let bundle = NSBundle.mainBundle()
 
-		var fileData : NSData = NSData.dataWithContentsOfFile(filePath, options: nil, error: nil)
-		return NSJSONSerialization.JSONObjectWithData(fileData, options: nil, error: nil) as? NSDictionary
+        guard fileName.characters.count > 0 else {
+            throw MockJSONReaderError.FileNameError
+        }
+        
+        guard let filePath = bundle.pathForResource(fileName, ofType: "json") else {
+            throw MockJSONReaderError.FilePathError
+        }
+        
+        guard let fileData = NSData(contentsOfFile: filePath) else {
+            throw MockJSONReaderError.FileDataError
+        }
+        
+        do {
+            let dict = try NSJSONSerialization.JSONObjectWithData(fileData, options: NSJSONReadingOptions.AllowFragments) as? NSDictionary
+            return dict
+        }
+        catch {
+            throw MockJSONReaderError.FileSerializationError
+        }
 	}
 }

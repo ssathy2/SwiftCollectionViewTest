@@ -38,12 +38,12 @@ struct User
 		
 		if (dictionary.valueForKey("profile_image") != nil)
 		{
-			self.profile_image = NSURL(string: dictionary.valueForKey("profile_image") as String!)
+			self.profile_image = NSURL(string: dictionary.valueForKey("profile_image") as! String!)
 		}
 		
 		if (dictionary.valueForKey("link") != nil)
 		{
-			self.link = NSURL(string: dictionary.valueForKey("link") as String!)
+			self.link = NSURL(string: dictionary.valueForKey("link") as! String!)
 		}
 	}
 	

@@ -20,6 +20,9 @@
 		DEEF94AE193F8A2400EB5D59 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF94AD193F8A2400EB5D59 /* Services.swift */; };
 		DEEF94B1193F91C500EB5D59 /* DictionaryExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF94B0193F91C500EB5D59 /* DictionaryExtensions.swift */; };
 		F983A2E219F5B6C200A2C710 /* ServicesClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F983A2E119F5B6C200A2C710 /* ServicesClient.swift */; };
+		F983A2E419F6AB9C00A2C710 /* ResultsDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F983A2E319F6AB9C00A2C710 /* ResultsDisplayViewController.swift */; };
+		F983A2E619F6ABA500A2C710 /* MockDataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = F983A2E519F6ABA500A2C710 /* MockDataServices.swift */; };
+		F9CBFBBE1B28E1DA007EC8AF /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9CBFBBD1B28E1DA007EC8AF /* Launch Screen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +53,9 @@
 		DEEF94AD193F8A2400EB5D59 /* Services.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		DEEF94B0193F91C500EB5D59 /* DictionaryExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtensions.swift; sourceTree = "<group>"; };
 		F983A2E119F5B6C200A2C710 /* ServicesClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesClient.swift; sourceTree = "<group>"; };
+		F983A2E319F6AB9C00A2C710 /* ResultsDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsDisplayViewController.swift; sourceTree = "<group>"; };
+		F983A2E519F6ABA500A2C710 /* MockDataServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockDataServices.swift; sourceTree = "<group>"; };
+		F9CBFBBD1B28E1DA007EC8AF /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +114,7 @@
 			children = (
 				DEEF949B193E7DBE00EB5D59 /* mock_search.json */,
 				DEEF947B193E7D5500EB5D59 /* Info.plist */,
+				F9CBFBBD1B28E1DA007EC8AF /* Launch Screen.storyboard */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -141,6 +148,7 @@
 		DEEF94A6193F88D500EB5D59 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F983A2E319F6AB9C00A2C710 /* ResultsDisplayViewController.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -159,6 +167,7 @@
 		DEEF94A9193F88F900EB5D59 /* Mock */ = {
 			isa = PBXGroup;
 			children = (
+				F983A2E519F6ABA500A2C710 /* MockDataServices.swift */,
 				DEEF949C193E7DBE00EB5D59 /* MockJSONReader.swift */,
 			);
 			name = Mock;
@@ -225,7 +234,8 @@
 		DEEF946F193E7D5500EB5D59 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = dotdotdot;
 				TargetAttributes = {
 					DEEF9476193E7D5500EB5D59 = {
@@ -263,6 +273,7 @@
 			files = (
 				DEEF9484193E7D5500EB5D59 /* Images.xcassets in Resources */,
 				DEEF949A193E7D8B00EB5D59 /* Main.storyboard in Resources */,
+				F9CBFBBE1B28E1DA007EC8AF /* Launch Screen.storyboard in Resources */,
 				DEEF949E193E7DBE00EB5D59 /* mock_search.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -282,9 +293,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				DEEF94A2193E7DFE00EB5D59 /* Question.swift in Sources */,
+				F983A2E619F6ABA500A2C710 /* MockDataServices.swift in Sources */,
 				DE33C859193FC8BE00A9AB4A /* ImageViewExtensions.swift in Sources */,
 				DEEF949F193E7DBE00EB5D59 /* MockJSONReader.swift in Sources */,
 				F983A2E219F5B6C200A2C710 /* ServicesClient.swift in Sources */,
+				F983A2E419F6AB9C00A2C710 /* ResultsDisplayViewController.swift in Sources */,
 				DEEF94B1193F91C500EB5D59 /* DictionaryExtensions.swift in Sources */,
 				DEEF94AE193F8A2400EB5D59 /* Services.swift in Sources */,
 				DEEF94A4193F7A6F00EB5D59 /* User.swift in Sources */,
@@ -332,6 +345,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -346,7 +360,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				METAL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -382,7 +396,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				METAL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -393,9 +407,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = SwiftCollectionViewTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dotdotdot.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -404,9 +418,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = SwiftCollectionViewTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dotdotdot.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -426,6 +440,7 @@
 				INFOPLIST_FILE = SwiftCollectionViewTestTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dotdotdot.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
@@ -442,6 +457,7 @@
 				INFOPLIST_FILE = SwiftCollectionViewTestTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dotdotdot.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 			};

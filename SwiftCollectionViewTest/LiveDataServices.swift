@@ -9,49 +9,36 @@
 import Foundation
 import UIKit
 
-class IDURLRequest: NSMutableURLRequest
-{
+class IDURLRequest: NSMutableURLRequest {
 	var identifier : NSUUID = NSUUID()
     
-    class func createRequest(httpMethod: SwiftCollectionViewTest.HTTPMethod, stringURL: String, urlParams: Dictionary<String, String>?, headers: Dictionary<String, String>?) -> IDURLRequest!
-    {
-        var fullURL : String = ""
-        var encodedParams : String = ""
+    class func createRequest(httpMethod: SwiftCollectionViewTest.HTTPMethod, stringURL: String, urlParams: Dictionary<String, String>?, headers: Dictionary<String, String>?) -> IDURLRequest {
+        var fullURL = stringURL
+        var encodedParams = ""
         
-        if urlParams != nil
-        {
+        if urlParams != nil {
             encodedParams = urlParams!.urlEncodedString()
         }
-        if countElements(encodedParams) != 0
-        {
+        if encodedParams.characters.count != 0 {
             fullURL = "\(stringURL)\(encodedParams)"
         }
         
-        var request = IDURLRequest(URL: NSURL(string: fullURL))
+        let request = IDURLRequest(URL: NSURL(string: fullURL)!)
         request.HTTPMethod = httpMethod.simpleDescription()
         return request
     }
     
-    func appendURLParams(params: Dictionary<String, String>)
-    {
-        var requestURL = self.URL
-        if (requestURL == nil)
-        {
-            return;
-        }
-        
-        var requestURLString = requestURL!.absoluteString
-        requestURLString = requestURLString!.stringByAppendingString(params.urlEncodedString())
-        self.URL = NSURL(string: requestURLString!)
+    func appendURLParams(params: Dictionary<String, String>) {
+        var requestURLString = URL!.absoluteString
+        requestURLString = requestURLString.stringByAppendingString(params.urlEncodedString())
+        URL = NSURL(string: requestURLString)
     }
 }
 
-class StackOverflowLiveServices: StackOverflowServices
-{
-    var baseURL = "http://api.stackexchange.com/2.2/"
-    var servicesClient : ServicesClient = ServicesClient(baseURL: "http://api.stackexchange.com/2.2/", defaultParameters: ["site" : "stackoverflow"])
-	class func sharedInstance() -> AnyObject
-	{
+class StackOverflowLiveServices: StackOverflowServices {
+    let baseURL = "http://api.stackexchange.com/2.2/"
+    let servicesClient : ServicesClient = ServicesClient(baseURL: "http://api.stackexchange.com/2.2/", defaultParameters: ["site" : "stackoverflow"])
+	class func sharedInstance() -> AnyObject {
 		struct Static {
 			static var sharedManager: StackOverflowLiveServices? = nil
 			static var onceToken: dispatch_once_t = 0
@@ -63,21 +50,39 @@ class StackOverflowLiveServices: StackOverflowServices
 		return Static.sharedManager!
 	}
     
-    func fetchSearchResults(query: String, page: Int, completionHandler handler: IDQuestionsHandler)
-	{
-		var url = "\(baseURL)search?"
-		var urlParams = ["intitle" : query, "page" : page.description]
-        var request : IDURLRequest = IDURLRequest.createRequest(HTTPMethod.GET, stringURL: url, urlParams: urlParams, headers: nil)
-		
-        self.servicesClient.fetchJSON(request, handler: {
-            (response: NSURLResponse!, responseDict: NSDictionary!, error: NSError!) in
-            
-        });
+    func fetchSearchResults(query: String, page: Int, completionHandler handler: IDQuestionsHandler) {
+		let url = "\(self.baseURL)search?"
+        let urlParams = ["intitle" : query, "page" : page.description, "site" : "stackoverflow"]
+        let request : IDURLRequest = IDURLRequest.createRequest(HTTPMethod.GET, stringURL: url, urlParams: urlParams, headers: nil)
+        do {
+            try self.servicesClient.fetchJSON(request, handler: {
+                (response: NSURLResponse!, responseDict: NSDictionary!, error: NSError!) in
+                let items : [NSDictionary]? = responseDict.valueForKey("items") as? [NSDictionary]
+                if items != nil
+                {
+                    var questionsArr : Array<Question> = []
+                    for item in items!
+                    {
+                        questionsArr.append(Question(fromObjcDictionary: item))
+                    }
+                    handler(response, questionsArr, error)
+                }
+            });
+        }
+        catch {
+            print(error)
+        }
 	}
 	
-	func fetchImage(imageURL: String, completionHandler handler: IDURLImageResponseHandler)
-	{
-	
+	func fetchImage(imageURL: String, completionHandler handler: IDURLImageResponseHandler){
+        let request : IDURLRequest = IDURLRequest.createRequest(HTTPMethod.GET, stringURL: imageURL, urlParams: nil, headers: nil)
+        do {
+            try self.servicesClient.fetchImage(request, handler: handler)
+        }
+        catch {
+            print(error)
+        }
+        
 	}
 	
 }
