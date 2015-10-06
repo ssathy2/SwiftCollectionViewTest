@@ -83,12 +83,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 	// UISearchBarDelegate
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {  // called when text changes (including clear) 
 		if searchText.characters.count > 0 {
-			let services : StackOverflowLiveServices = StackOverflowLiveServices.sharedInstance() as! StackOverflowLiveServices;
-			services.fetchSearchResults(searchText, page: 1, completionHandler: {
-				(urlResponse: NSURLResponse!, questions: [Question]?, error: NSError!) -> Void in
-                    self.questions = questions!
-                    self.collectionView!.reloadData()
-				})
+//			let services : StackOverflowLiveServices = StackOverflowLiveServices.sharedInstance() as! StackOverflowLiveServices;
+//			services.fetchSearchResults(searchText, page: 1, completionHandler: {
+//				(urlResponse: NSURLResponse!, questions: [Question]?, error: NSError!) -> Void in
+//                    self.questions = questions!
+//                    self.collectionView!.reloadData()
+//				})
 		}
 	}
 

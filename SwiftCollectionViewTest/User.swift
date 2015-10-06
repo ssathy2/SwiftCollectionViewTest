@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import Argo
+import Curry
 
 //"owner": {
 //	"reputation": 120,
@@ -20,31 +22,20 @@ import Foundation
 
 struct User
 {
-	var reputation		: NSNumber?
-	var user_id			: NSString?
-	var user_type		: NSString?
-	var accept_rate		: NSNumber?
-	var profile_image	: NSURL?
-	var display_name	: NSString?
-	var link			: NSURL?
-	
-	init(dictionary: NSDictionary)
-	{
-		self.reputation	= dictionary.valueForKey("reputation") as? NSNumber
-		self.user_id		= dictionary.valueForKey("user_id") as? NSString
-		self.user_type	= dictionary.valueForKey("user_type") as? NSString
-		self.accept_rate = dictionary.valueForKey("accept_rate") as? NSNumber
-		self.display_name = dictionary.valueForKey("display_name") as? NSString
-		
-		if (dictionary.valueForKey("profile_image") != nil)
-		{
-			self.profile_image = NSURL(string: dictionary.valueForKey("profile_image") as! String!)
-		}
-		
-		if (dictionary.valueForKey("link") != nil)
-		{
-			self.link = NSURL(string: dictionary.valueForKey("link") as! String!)
-		}
-	}
-	
+	var user_id			: String
+	var user_type		: String
+	var profile_image	: String?
+	var display_name	: String
+	var link			: String?
+}
+
+extension User : Decodable {
+    static func decode(j: JSON) -> Decoded<User> {
+        return curry(User.init)
+            <^> j <| "user_id"
+            <*> j <| "user_type"
+            <*> j <|? "profile_image"
+            <*> j <| "display_name"
+            <*> j <|? "link"
+    }
 }

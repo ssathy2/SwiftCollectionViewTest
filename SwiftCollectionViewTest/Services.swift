@@ -9,32 +9,13 @@
 import Foundation
 import UIKit
 
-enum HTTPMethod
-{
-    case POST, GET, DELETE, OPTIONS
-    func simpleDescription() -> String {
-        switch self {
-            case .POST:		return "POST"
-            case .GET:		return "GET"
-            case .DELETE:	return "DELETE"
-            case .OPTIONS:	return "OPTIONS"
-        }
-    }
-}
-
-enum ServicesError : ErrorType
-{
-    case SerializationError, HandlerError
-}
-
-typealias IDURLResponseHandler = ((NSURLResponse!, NSDictionary!, NSError!) -> Void)!;
-typealias IDURLImageResponseHandler = ((NSURLResponse!, UIImage!, NSError!) -> Void)!;
-
-typealias IDQuestionsHandler = ((NSURLResponse!, [Question]?, NSError!) -> Void)!;
+typealias IDURLJSONResponseHandler  = (innerClosure: () throws -> (NSDictionary)) -> Void;
+typealias IDURLImageResponseHandler = (innerClosure: () throws -> (UIImage)) -> Void;
+typealias IDQuestionsHandler        = (innerClosure: () throws -> ([Question])) -> Void;
 
 protocol StackOverflowServices
 {
 	static func sharedInstance() -> AnyObject
 	func fetchSearchResults(query: String, page: Int, completionHandler handler: IDQuestionsHandler)
-	func fetchImage(imageURL: String, completionHandler handler: IDURLImageResponseHandler)
+	func fetchImage(url: NSURL, completionHandler handler: IDURLImageResponseHandler)
 }

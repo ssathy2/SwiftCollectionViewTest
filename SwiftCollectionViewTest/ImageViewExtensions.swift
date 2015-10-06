@@ -11,14 +11,11 @@ import UIKit
 
 extension UIImageView
 {    
-	func setImageWithURL(url: NSURL!)
+	func setImageWithURL(url: NSURL)
 	{
 		let services : StackOverflowLiveServices = StackOverflowLiveServices.sharedInstance() as! StackOverflowLiveServices;
-		let imageURLString = url.absoluteString;
-		services.fetchImage(imageURLString, completionHandler: {
-			(urlResponse: NSURLResponse!, image: UIImage!, error: NSError!) -> Void in
-				// TODO: Probably need to run this on the main thread
-				self.image = image;
-			})
-	}
+        services.fetchImage(url) { (innerClosure) -> Void in
+            
+        }
+    }
 }

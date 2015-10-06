@@ -9,35 +9,10 @@
 import Foundation
 import UIKit
 
-class IDURLRequest: NSMutableURLRequest {
-	var identifier : NSUUID = NSUUID()
-    
-    class func createRequest(httpMethod: SwiftCollectionViewTest.HTTPMethod, stringURL: String, urlParams: Dictionary<String, String>?, headers: Dictionary<String, String>?) -> IDURLRequest {
-        var fullURL = stringURL
-        var encodedParams = ""
-        
-        if urlParams != nil {
-            encodedParams = urlParams!.urlEncodedString()
-        }
-        if encodedParams.characters.count != 0 {
-            fullURL = "\(stringURL)\(encodedParams)"
-        }
-        
-        let request = IDURLRequest(URL: NSURL(string: fullURL)!)
-        request.HTTPMethod = httpMethod.simpleDescription()
-        return request
-    }
-    
-    func appendURLParams(params: Dictionary<String, String>) {
-        var requestURLString = URL!.absoluteString
-        requestURLString = requestURLString.stringByAppendingString(params.urlEncodedString())
-        URL = NSURL(string: requestURLString)
-    }
-}
-
 class StackOverflowLiveServices: StackOverflowServices {
     let baseURL = "http://api.stackexchange.com/2.2/"
-    let servicesClient : ServicesClient = ServicesClient(baseURL: "http://api.stackexchange.com/2.2/", defaultParameters: ["site" : "stackoverflow"])
+    let requestFetcher: RequestFetcher = RequestFetcher(baseURL: "http://api.stackexchange.com/2.2/", defaultParameters: ["site" : "stackoverflow"])
+    
 	class func sharedInstance() -> AnyObject {
 		struct Static {
 			static var sharedManager: StackOverflowLiveServices? = nil
@@ -51,38 +26,27 @@ class StackOverflowLiveServices: StackOverflowServices {
 	}
     
     func fetchSearchResults(query: String, page: Int, completionHandler handler: IDQuestionsHandler) {
-		let url = "\(self.baseURL)search?"
-        let urlParams = ["intitle" : query, "page" : page.description, "site" : "stackoverflow"]
-        let request : IDURLRequest = IDURLRequest.createRequest(HTTPMethod.GET, stringURL: url, urlParams: urlParams, headers: nil)
-        do {
-            try self.servicesClient.fetchJSON(request, handler: {
-                (response: NSURLResponse!, responseDict: NSDictionary!, error: NSError!) in
-                let items : [NSDictionary]? = responseDict.valueForKey("items") as? [NSDictionary]
-                if items != nil
-                {
-                    var questionsArr : Array<Question> = []
-                    for item in items!
-                    {
-                        questionsArr.append(Question(fromObjcDictionary: item))
-                    }
-                    handler(response, questionsArr, error)
-                }
-            });
-        }
-        catch {
-            print(error)
+//		let url = "\(self.baseURL)search?"
+//        let urlParams = ["intitle" : query, "page" : page.description, "site" : "stackoverflow"]
+//        let request : IDURLRequest = IDURLRequest.createRequest(HTTPMethod.GET, stringURL: url, urlParams: urlParams, headers: nil)
+//        self.requestFetcher.fetchJSON(request) {
+//            (responseDict: NSDictionary?, error: NSError?) -> Void in
+//            let items : [NSDictionary]? = responseDict.valueForKey("items") as? [NSDictionary]
+//            if items != nil
+//            {
+//                var questionsArr : Array<Question> = []
+//                for item in items!
+//                {
+//                    questionsArr.append(Question(fromObjcDictionary: item))
+//                }
+//                handler(response, questionsArr, error)
+//            }
+//        });
+	}
+	func fetchImage(url: NSURL, completionHandler handler: IDURLImageResponseHandler){
+        let request = IDURLRequest(URL: url)
+        self.requestFetcher.fetchImage(request) { (innerClosure) -> Void in
+            handler(innerClosure: innerClosure)
         }
 	}
-	
-	func fetchImage(imageURL: String, completionHandler handler: IDURLImageResponseHandler){
-        let request : IDURLRequest = IDURLRequest.createRequest(HTTPMethod.GET, stringURL: imageURL, urlParams: nil, headers: nil)
-        do {
-            try self.servicesClient.fetchImage(request, handler: handler)
-        }
-        catch {
-            print(error)
-        }
-        
-	}
-	
 }

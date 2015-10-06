@@ -11,6 +11,6 @@ import Foundation
 extension Dictionary
 {
 	func urlEncodedString() -> String {
-        return "&".join(self.keys.map({key in "\(key)=\(self[key]!)"}))
+        return self.keys.map({key in "\(key)=\(self[key]!)"}).joinWithSeparator("&");
 	}
 }

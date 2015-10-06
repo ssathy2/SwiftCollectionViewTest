@@ -6,21 +6,21 @@
 //  Copyright (c) 2014 dotdotdot. All rights reserved.
 //
 
-import Foundation
+import Argo
+import Curry
 
-struct Question
-{
-	var body	: NSString?
-	var title	: NSString?
-	var user	: User?
-	
-	init(fromObjcDictionary dictionary: NSDictionary)
-	{
-		self.body			=	dictionary.valueForKey("body") as? NSString
-		self.title			=	dictionary.valueForKey("title") as? NSString
-		
-        if let userDictionary = dictionary.valueForKey("owner") as? NSDictionary {
-			self.user = User(dictionary: userDictionary)
-        }
-	}
+struct Question {
+	var body	: String?
+	var title	: String?
+	var user	: User
+}
+
+extension Question : Decodable {
+    static func decode(json: JSON) -> Decoded<Question> {
+        return curry(Question.init)
+            <^> json <|? "body"
+            <*> json <|? "title"
+            <*> json <| "user"
+        
+    }
 }
