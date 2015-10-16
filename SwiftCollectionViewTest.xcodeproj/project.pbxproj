@@ -20,6 +20,16 @@
 		DEEF94AC193F89DA00EB5D59 /* LiveDataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF94AB193F89DA00EB5D59 /* LiveDataServices.swift */; };
 		DEEF94AE193F8A2400EB5D59 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF94AD193F8A2400EB5D59 /* Services.swift */; };
 		DEEF94B1193F91C500EB5D59 /* DictionaryExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF94B0193F91C500EB5D59 /* DictionaryExtensions.swift */; };
+		F9612B6E1BCF04BD00B36910 /* DictionaryExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF94B0193F91C500EB5D59 /* DictionaryExtensions.swift */; };
+		F9612B6F1BCF04BD00B36910 /* ImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE33C858193FC8BE00A9AB4A /* ImageViewExtensions.swift */; };
+		F9612B701BCF04BD00B36910 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF94AD193F8A2400EB5D59 /* Services.swift */; };
+		F9612B711BCF04BD00B36910 /* RequestFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F983A2E119F5B6C200A2C710 /* RequestFetcher.swift */; };
+		F9612B721BCF04BD00B36910 /* LiveDataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF94AB193F89DA00EB5D59 /* LiveDataServices.swift */; };
+		F9612B731BCF04BD00B36910 /* MockDataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = F983A2E519F6ABA500A2C710 /* MockDataServices.swift */; };
+		F9612B741BCF04BD00B36910 /* MockJSONReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF949C193E7DBE00EB5D59 /* MockJSONReader.swift */; };
+		F9612B751BCF04BD00B36910 /* ResultsDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F983A2E319F6AB9C00A2C710 /* ResultsDisplayViewController.swift */; };
+		F9612B761BCF04BD00B36910 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF94A1193E7DFE00EB5D59 /* Question.swift */; };
+		F9612B771BCF04BD00B36910 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEF94A3193F7A6F00EB5D59 /* User.swift */; };
 		F983A2E219F5B6C200A2C710 /* RequestFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F983A2E119F5B6C200A2C710 /* RequestFetcher.swift */; };
 		F983A2E419F6AB9C00A2C710 /* ResultsDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F983A2E319F6AB9C00A2C710 /* ResultsDisplayViewController.swift */; };
 		F983A2E619F6ABA500A2C710 /* MockDataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = F983A2E519F6ABA500A2C710 /* MockDataServices.swift */; };
@@ -396,6 +406,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9612B6E1BCF04BD00B36910 /* DictionaryExtensions.swift in Sources */,
+				F9612B6F1BCF04BD00B36910 /* ImageViewExtensions.swift in Sources */,
+				F9612B701BCF04BD00B36910 /* Services.swift in Sources */,
+				F9612B711BCF04BD00B36910 /* RequestFetcher.swift in Sources */,
+				F9612B721BCF04BD00B36910 /* LiveDataServices.swift in Sources */,
+				F9612B731BCF04BD00B36910 /* MockDataServices.swift in Sources */,
+				F9612B741BCF04BD00B36910 /* MockJSONReader.swift in Sources */,
+				F9612B751BCF04BD00B36910 /* ResultsDisplayViewController.swift in Sources */,
+				F9612B761BCF04BD00B36910 /* Question.swift in Sources */,
+				F9612B771BCF04BD00B36910 /* User.swift in Sources */,
 				F9F283AB1BC2FFE7006E9E1B /* IDURLRequest.swift in Sources */,
 				F9F283A81BC2FFC5006E9E1B /* RequestFetchable.swift in Sources */,
 				DEEF9490193E7D5600EB5D59 /* SwiftCollectionViewTestTests.swift in Sources */,

@@ -8,25 +8,20 @@
 
 import Foundation
 
-enum HTTPMethod
-{
-    case POST, GET, DELETE, OPTIONS
-    func simpleDescription() -> String {
-        switch self {
-        case .POST:		return "POST"
-        case .GET:		return "GET"
-        case .DELETE:	return "DELETE"
-        case .OPTIONS:	return "OPTIONS"
+class IDURLRequest: NSMutableURLRequest {
+    enum HTTPMethod
+    {
+        case POST, GET, DELETE, OPTIONS
+        func simpleDescription() -> String {
+            switch self {
+            case .POST:		return "POST"
+            case .GET:		return "GET"
+            case .DELETE:	return "DELETE"
+            case .OPTIONS:	return "OPTIONS"
+            }
         }
     }
-}
-
-protocol NSMutableRequestHelpers {
-    func appendURLParams(params: Dictionary<String, String>)
-    func createRequest(method: HTTPMethod, endPoint: String, 
-}
-
-class IDURLRequest: NSMutableURLRequest {
+    
     var identifier : NSUUID = NSUUID()
     
     class func createRequest(httpMethod: HTTPMethod, stringURL: String, urlParams: Dictionary<String, String>?, headers: Dictionary<String, String>?) -> IDURLRequest {

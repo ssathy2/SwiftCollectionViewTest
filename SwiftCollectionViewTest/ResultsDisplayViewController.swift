@@ -23,13 +23,13 @@ class PostCell : UICollectionViewCell
     
 	func updateWithModel(question : Question)
 	{
-		if let user = question.user {
-			self.questionAuthor!.text	= user.display_name! as String
+		if let user = question.owner {
+			self.questionAuthor!.text	= user.display_name as String
             if user.profile_image != nil {
-				self.postProfileImage!.setImageWithURL(user.profile_image)
+				self.postProfileImage!.setImageWithURL(NSURL(string: user.profile_image!)!)
 			}
 		}
-		self.questionTitle!.text			= question.title as? String;
+		self.questionTitle!.text = question.title;
 	}
 }
 
@@ -48,10 +48,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 	
 	func viewTapped() {
 		self.view.endEditing(true)
-	}
-	
-	func setupQuestionsArrayWithModels(models : Array<NSDictionary>) {
-        self.questions = models.map({dictionary in Question(fromObjcDictionary: dictionary )})
 	}
 
 	override func didReceiveMemoryWarning() {
@@ -83,12 +79,19 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 	// UISearchBarDelegate
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {  // called when text changes (including clear) 
 		if searchText.characters.count > 0 {
-//			let services : StackOverflowLiveServices = StackOverflowLiveServices.sharedInstance() as! StackOverflowLiveServices;
-//			services.fetchSearchResults(searchText, page: 1, completionHandler: {
-//				(urlResponse: NSURLResponse!, questions: [Question]?, error: NSError!) -> Void in
-//                    self.questions = questions!
-//                    self.collectionView!.reloadData()
-//				})
+			let services : StackOverflowLiveServices = StackOverflowLiveServices.sharedInstance() as! StackOverflowLiveServices;
+            services.fetchSearchResults(searchText, page: 1, completionHandler: { (innerClosure) -> Void in
+                do {
+                    if let innerQuestions:[Question] = try innerClosure() as [Question] {
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            self.questions = innerQuestions
+                            self.collectionView!.reloadData()
+                        })
+                    }
+                } catch let error {
+                    print(error)
+                }
+            })
 		}
 	}
 

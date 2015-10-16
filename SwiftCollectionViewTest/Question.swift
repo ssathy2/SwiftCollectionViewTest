@@ -12,7 +12,7 @@ import Curry
 struct Question {
 	var body	: String?
 	var title	: String?
-	var user	: User
+	var owner	: User?
 }
 
 extension Question : Decodable {
@@ -20,7 +20,6 @@ extension Question : Decodable {
         return curry(Question.init)
             <^> json <|? "body"
             <*> json <|? "title"
-            <*> json <| "user"
-        
+            <*> json <|? "owner"
     }
 }

@@ -15,7 +15,15 @@ extension UIImageView
 	{
 		let services : StackOverflowLiveServices = StackOverflowLiveServices.sharedInstance() as! StackOverflowLiveServices;
         services.fetchImage(url) { (innerClosure) -> Void in
-            
+            do {
+                if let image : UIImage = try innerClosure() as UIImage {
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.image = image                        
+                    })
+                }
+            } catch let error {
+                print(error)
+            }
         }
     }
 }

@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Argo
 
 class StackOverflowLiveServices: StackOverflowServices {
     let baseURL = "http://api.stackexchange.com/2.2/"
@@ -26,22 +27,24 @@ class StackOverflowLiveServices: StackOverflowServices {
 	}
     
     func fetchSearchResults(query: String, page: Int, completionHandler handler: IDQuestionsHandler) {
-//		let url = "\(self.baseURL)search?"
-//        let urlParams = ["intitle" : query, "page" : page.description, "site" : "stackoverflow"]
-//        let request : IDURLRequest = IDURLRequest.createRequest(HTTPMethod.GET, stringURL: url, urlParams: urlParams, headers: nil)
-//        self.requestFetcher.fetchJSON(request) {
-//            (responseDict: NSDictionary?, error: NSError?) -> Void in
-//            let items : [NSDictionary]? = responseDict.valueForKey("items") as? [NSDictionary]
-//            if items != nil
-//            {
-//                var questionsArr : Array<Question> = []
-//                for item in items!
-//                {
-//                    questionsArr.append(Question(fromObjcDictionary: item))
-//                }
-//                handler(response, questionsArr, error)
-//            }
-//        });
+		let url = "\(self.baseURL)search?"
+        let urlParams = ["intitle" : query, "page" : page.description, "site" : "stackoverflow"]
+        let request : IDURLRequest = IDURLRequest.createRequest(IDURLRequest.HTTPMethod.GET, stringURL: url, urlParams: urlParams, headers: nil)
+        self.requestFetcher.fetchJSON(request) { (innerClosure) -> Void in
+            do {
+                var allItems : [Question] = Array<Question>()
+                if let j: NSDictionary = try innerClosure() as NSDictionary? {
+                    let items : [NSDictionary]? = j.valueForKey("items") as? [NSDictionary]
+                    for item in items!
+                    {
+                        allItems.append(decode(item)!)
+                    }
+                }
+                handler(innerClosure: { return allItems })
+            } catch let error {
+                handler(innerClosure: { throw error })
+            }
+        }
 	}
 	func fetchImage(url: NSURL, completionHandler handler: IDURLImageResponseHandler){
         let request = IDURLRequest(URL: url)
